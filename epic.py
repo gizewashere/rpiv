@@ -62,8 +62,8 @@ with SB(uc=True, test=True,locale=f"{language_code.upper()}") as yopyeaseyoi:
                     yopyeaseyoi2.uc_click('button:contains("Accept")', reconnect_time=4)
         except:
             print("error happened")
-            while is_stream_online("gizewashere"):
-                yopyeaseyoi.sleep(100)
-            yopyeaseyoi.quit_extra_driver()
+        while is_stream_online("gizewashere"):
+            yopyeaseyoi.sleep(100)
+        yopyeaseyoi.quit_extra_driver()
     yopyeaseyoi.sleep(1)
 
