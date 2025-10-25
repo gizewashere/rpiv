@@ -47,12 +47,12 @@ with SB(uc=True, test=True,locale=f"{language_code.upper()}") as yopyeaseyoi:
         "Emulation.setTimezoneOverride",
         {"timezoneId": timezone_id}
     )
-    url = "https://www.twitch.tv/brutalles"
+    url = "https://www.twitch.tv/gizewashere"
     yopyeaseyoi.uc_open_with_reconnect(url, 5)
     yopyeaseyoi.sleep(30)
     
     if yopyeaseyoi.is_element_present("#live-channel-stream-information"):
-        url = "https://www.twitch.tv/brutalles"
+        url = "https://www.twitch.tv/gizewashere"
         yopyeaseyoi.uc_open_with_reconnect(url, 5)
         try:
             if yopyeaseyoi.is_element_present('button:contains("Accept")'):
