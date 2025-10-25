@@ -23,17 +23,6 @@ longitude = geo_data["lon"]
 timezone_id = geo_data["timezone"]
 language_code = geo_data["countryCode"].lower()  # e.g., 'us' -> 'en-US'
 
-def is_stream_online(username):
-    """
-    Returns True if the Twitch stream is online, False otherwise.
-    Uses the public frontend Client-ID (no OAuth).
-    """
-    url = f"https://www.twitch.tv/{username}"
-    headers = {
-        "Client-ID": "kimne78kx3ncx6brgo4mv6wki5h1ko",  # Publicly known Client-ID
-    }
-    resp = requests.get(url, headers=headers)
-    return "isLiveBroadcast" in resp.text
 with SB(uc=True, test=True,locale=f"{language_code.upper()}") as yopyeaseyoi:
     yopyeaseyoi.execute_cdp_cmd(
         "Emulation.setGeolocationOverride",
@@ -47,12 +36,12 @@ with SB(uc=True, test=True,locale=f"{language_code.upper()}") as yopyeaseyoi:
         "Emulation.setTimezoneOverride",
         {"timezoneId": timezone_id}
     )
-    url = "https://www.twitch.tv/gizewashere"
+    url = "https://www.twitch.tv/brutalles"
     yopyeaseyoi.uc_open_with_reconnect(url, 5)
     yopyeaseyoi.sleep(30)
     
     if yopyeaseyoi.is_element_present("#live-channel-stream-information"):
-        url = "https://www.twitch.tv/gizewashere"
+        url = "https://www.twitch.tv/brutalles"
         yopyeaseyoi.uc_open_with_reconnect(url, 5)
         try:
             if yopyeaseyoi.is_element_present('button:contains("Accept")'):
