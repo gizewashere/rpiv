@@ -47,8 +47,11 @@ with SB(uc=True, test=True,locale=f"{language_code.upper()}") as yopyeaseyoi:
         "Emulation.setTimezoneOverride",
         {"timezoneId": timezone_id}
     )
-
-    if is_stream_online("gizewashere"):
+    url = "https://www.twitch.tv/gizewashere"
+    yopyeaseyoi.uc_open_with_reconnect(url, 5)
+    yopyeaseyoi.sleep(10)
+    
+    if yopyeaseyoi.is_element_present("#live-channel-stream-information"):
         url = "https://www.twitch.tv/gizewashere"
         yopyeaseyoi.uc_open_with_reconnect(url, 5)
         try:
@@ -62,7 +65,7 @@ with SB(uc=True, test=True,locale=f"{language_code.upper()}") as yopyeaseyoi:
                     yopyeaseyoi2.uc_click('button:contains("Accept")', reconnect_time=4)
         except:
             print("error happened")
-        while is_stream_online("gizewashere"):
+        while yopyeaseyoi.is_element_present("#live-channel-stream-information"):
             yopyeaseyoi.sleep(100)
         yopyeaseyoi.quit_extra_driver()
     yopyeaseyoi.sleep(1)
